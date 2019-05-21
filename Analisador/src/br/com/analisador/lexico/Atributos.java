@@ -4,9 +4,9 @@ import java.util.ArrayList;
 
 public class Atributos {
 	public static String Arquivo;
-	public String conteudoArquivo;
-	int i;
-	public ArrayList<String> Tokens = new ArrayList<>();
+	private String conteudoArquivo;
+	private int i;
+	private ArrayList<String> Tokens = new ArrayList<>();
 	
 	public int getI() {
 	       return i;
