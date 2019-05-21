@@ -11,7 +11,7 @@ public class Atributos {
 	public int getI() {
 	       return i;
 	   }
-	   public ArrayList<String> getTokens() {
+	   ArrayList<String> getTokens() {
 	       return Tokens;
 	   }
 	   public void setTokens(ArrayList<String> tokens) {

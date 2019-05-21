@@ -3,45 +3,45 @@ package br.com.analisador.lexico;
 public class Metodos {
 	public String Tokens () {
 		Atributos at = new Atributos();
-		at.Tokens.add("if");
-		at.Tokens.add("else");
-		at.Tokens.add("while");
-		at.Tokens.add("return");
-		at.Tokens.add("float");
-		at.Tokens.add("char");
-		at.Tokens.add("void");
-		at.Tokens.add("prnt");
-		at.Tokens.add("int");
-		at.Tokens.add("and");
-		at.Tokens.add("or");
-		at.Tokens.add("not");
-		at.Tokens.add("proc");
-		at.Tokens.add("var");
+		at.getTokens().add("if");
+		at.getTokens().add("else");
+		at.getTokens().add("while");
+		at.getTokens().add("return");
+		at.getTokens().add("float");
+		at.getTokens().add("char");
+		at.getTokens().add("void");
+		at.getTokens().add("prnt");
+		at.getTokens().add("int");
+		at.getTokens().add("and");
+		at.getTokens().add("or");
+		at.getTokens().add("not");
+		at.getTokens().add("proc");
+		at.getTokens().add("var");
 		
-		at.Tokens.add("<");
-		at.Tokens.add(">");
-		at.Tokens.add("<=");
-		at.Tokens.add(">=");
-		at.Tokens.add("=");
-		at.Tokens.add("<>");
+		at.getTokens().add("<");
+		at.getTokens().add(">");
+		at.getTokens().add("<=");
+		at.getTokens().add(">=");
+		at.getTokens().add("=");
+		at.getTokens().add("<>");
 		
-		at.Tokens.add("+");
-		at.Tokens.add("-");
-		at.Tokens.add("*");
-		at.Tokens.add("/");
-		at.Tokens.add("%");
+		at.getTokens().add("+");
+		at.getTokens().add("-");
+		at.getTokens().add("*");
+		at.getTokens().add("/");
+		at.getTokens().add("%");
 		
-		at.Tokens.add(":=");
+		at.getTokens().add(":=");
 		
-		at.Tokens.add("(");
-		at.Tokens.add(")");
-		at.Tokens.add(",");
-		at.Tokens.add(";");
-		at.Tokens.add("{");
-		at.Tokens.add("}");
+		at.getTokens().add("(");
+		at.getTokens().add(")");
+		at.getTokens().add(",");
+		at.getTokens().add(";");
+		at.getTokens().add("{");
+		at.getTokens().add("}");
 		
 		
-		return at.Tokens.toString();
+		return at.getTokens().toString();
 	}
 	 public void Analizador(){}
 
