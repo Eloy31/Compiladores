@@ -5,7 +5,7 @@ import java.io.File;
 
 public class analisdorLexico {
 	public static void main(String[] args) {
-		String rota = "C:/Users/Eloy Guimaraes/eclipse-workspace/TrabalhoFinalCompiladores/src/br/com/compiladores/trabalhofinal/AnlisadorLexico/Lexer.flex";
+		String rota = "C:/Users/Alunotgn/Desktop/Compiladores/TrabalhoFinalCompiladores/src/br/com/compiladores/trabalhofinal/AnlisadorLexico/Lexer.flex";
 		gerarLexico(rota);
 	}
 	public static void gerarLexico(String rota) {

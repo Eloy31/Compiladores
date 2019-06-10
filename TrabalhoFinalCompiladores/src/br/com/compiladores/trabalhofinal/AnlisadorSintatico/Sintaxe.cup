@@ -1,0 +1,85 @@
+package br.com.compiladores.trabalhofinal.AnlisadorSintatico;
+
+import java_cup.runtime.*;
+import java.util.*;
+import java.io.*;
+
+parser code {:
+    public void report_error(String message, Object info){
+            System.out.println("AVISO - " + message + " - Token - " + Sym.terminalNames[((Symbol) info).sym] +" na linha "+((Symbol) info).left+" e na coluna "+((Symbol)info).right);
+        }
+
+
+    public void report_fatal_error(String message, Object info)  {
+            System.out.println("ERRO - " + message + " - Token - " + Sym.terminalNames[((Symbol) info).sym] +" na linha "+((Symbol) info).left+" e na coluna "+((Symbol)info).right);
+            System.exit(-1);
+    }
+
+:};
+
+terminal VAR, MENOS, VIRG, PONTVIRG, ID, INT, CHAR, FLOAT, FUNC, PAREESQUE, PAREDIREI, CHAVESQ, CHAVDIREI;
+terminal SETAR, WHILE, IF, ELSE, PRINT, RETURN, MAIS, VEZES, DIVISAO, MOD, AND, OR, NOT, IGUAL;
+terminal DIFERENTE, MENORIGUAL, MAIORIGUAL, MENORQUE, MAIORQUE, INTL, CHARL, FLOATL, VOID;
+
+non terminal programa, decl_global, decl_var, decl_func, lista_idents, tipo, nome_args;
+non terminal bloco, lista_comandos, comando, atribuicao, iteracao, decisao, escrita;
+non terminal retorno, chamada_func_cmd, expressao, lista_exprs,chamada_func, expr_basica;
+non terminal param_formais;
+
+precedence nonassoc ELSE;
+precedence left OR, AND;
+precedence left IGUAL, DIFERENTE, MENORQUE, MAIORQUE, MENORIGUAL, MAIORIGUAL;
+precedence left  MAIS, MENOS;
+precedence left  VEZES, DIVISAO, MOD;
+precedence left NOT;
+
+start with programa;
+
+programa ::= decl_global;
+
+decl_global ::= decl_var | decl_func | decl_global decl_var | decl_var decl_func;
+
+decl_var ::= VAR lista_idents MENOS tipo PONTVIRG;
+
+lista_idents ::= ID | lista_idents VIRG ID ;
+
+tipo ::= INT | CHAR | FLOAT;
+
+decl_func ::= FUNC nome_args MENOS tipo bloco | FUNC nome_args bloco;
+
+nome_args ::= ID PAREESQUE param_formais PAREDIREI | nome_args ID PAREESQUE param_formais PAREDIREI |
+ID PAREESQUE PAREDIREI | nome_args ID PAREESQUE PAREDIREI;
+
+param_formais ::= ID MENOS tipo | param_formais VIRG ID MENOS tipo;
+
+bloco ::= CHAVESQ lista_comandos CHAVDIREI;
+
+lista_comandos ::= comando | lista_comandos comando;
+
+comando ::= decl_var | atribuicao | iteracao | decisao | escrita | retorno | bloco |
+chamada_func_cmd;
+
+atribuicao ::= ID SETAR expressao PONTVIRG;
+
+iteracao ::= WHILE PAREESQUE expressao PAREDIREI comando;
+
+decisao ::= IF PAREESQUE expressao PAREDIREI comando | IF PAREESQUE expressao PAREDIREI comando ELSE comando;
+
+escrita ::= PRINT PAREESQUE lista_exprs PAREDIREI PONTVIRG |PRINT PAREESQUE PAREDIREI PONTVIRG;
+
+chamada_func_cmd ::= chamada_func PONTVIRG;
+
+retorno ::= RETURN expressao PONTVIRG;
+
+chamada_func ::= ID PAREESQUE lista_exprs PAREDIREI | chamada_func ID PAREESQUE lista_exprs PAREDIREI;
+
+lista_exprs ::= expressao | lista_exprs VIRG expressao;
+
+expressao ::= expressao MAIS expressao | expressao MENOS expressao |
+expressao VEZES expressao | expressao DIVISAO expressao | expressao MOD expressao |
+expressao AND expressao | expressao OR expressao | expressao IGUAL expressao |
+expressao DIFERENTE expressao | expressao MENORIGUAL expressao | expressao MENORQUE expressao |
+expressao MAIORIGUAL expressao | expressao MAIORQUE expressao | expr_basica;
+
+expr_basica ::= PAREESQUE expressao PAREDIREI | NOT expr_basica | INTL | CHARL | FLOATL | ID |
+chamada_func;
