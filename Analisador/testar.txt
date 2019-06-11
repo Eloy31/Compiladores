@@ -1,8 +1,0 @@
-Program Pgrau ;
-Var y : real ;
-Const A = 2.0 ; B = 3 ;
-Begin
-	Read ( x ) ;
-	Y := a * x + b;
-	Write ( y0 ) ;Var Begin Read
-End.

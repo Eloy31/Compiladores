@@ -1,2 +1,0 @@
-# Analisador
-Trabalho de Compiladores
